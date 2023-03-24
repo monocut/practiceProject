@@ -1,0 +1,35 @@
+.container {
+  margin: auto;
+  gap: 30px;
+  margin-left: 15px ;
+  font-size: 20px;
+}
+.container input {
+  width: 200px;
+  margin: 10px;
+  height: 30px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-size: 20px;
+  outline: none;
+  border-color: darkcyan;
+  color: chocolate;
+}
+
+.container button {
+  margin: 10px;
+  background-color: lightcoral;
+  padding: 15px;
+  border-radius: 5%;
+  border: none;
+  box-shadow: 1px 2px 3px black;
+}
+
+.container button:hover {
+  margin: 10px;
+  background-color: rgb(94, 175, 81);
+  padding: 15px;
+  border-radius: 5%;
+  box-shadow: 1px 2px 7px black;
+}

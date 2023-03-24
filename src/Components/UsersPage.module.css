@@ -1,0 +1,55 @@
+.items{ 
+  display: flex;
+  
+}
+.items ul li{
+  font-size: 20px;
+  letter-spacing: 1px;
+  background-color: aliceblue;
+  padding: 5px;
+  border-radius: 10px;
+  width: 450px;
+  list-style: none;
+  margin-bottom: 10px;
+  position: relative;
+}
+.items input{
+  font-size: 18px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 100px;
+  background-color: aliceblue;
+  color: lightcoral;
+}
+
+.items button {
+  margin: 8px;
+  background-color: lightcoral;
+  padding: 2px;
+  border-radius: 5%;
+  border: none;
+  box-shadow: 1px 2px 3px black;
+
+}
+
+.items button:hover {
+  margin: 8px;
+  background-color: rgb(94, 175, 81);
+  padding: 2px;
+  border-radius: 5%;
+  box-shadow: 1px 2px 7px black;
+}
+
+/* .buttons{
+    position: absolute;
+  right: 0;
+} */
+
+.buttons img {
+  width: 20px;
+  height: 20px;
+}
+
+
+

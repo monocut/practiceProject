@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  gap: 50px;
+}
+
+
+.main {
+  background-color: rgb(188, 212, 192);
+  margin: auto;
+}
+
+.box{
+  display: flex;
+  gap: 150px;
+  
+}
