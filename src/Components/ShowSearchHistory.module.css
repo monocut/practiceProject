@@ -1,27 +1,45 @@
 .container {
   font-size: 20px;
   margin-left: 15px;
+  
+}
+
+.ul_result {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  
 }
 
 .container ul li {
-  font-size: 15px;
+  display: flex;
+  font-size: 20px;
   letter-spacing: 1px;
   background-color: aliceblue;
   padding: 10px;
   border-radius: 10px;
-  width: 450px;
+  width: 650px;
   list-style: none;
   margin-bottom: 10px;
+  /* text-align: center; */
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid black ;
 }
 
 
 .container button {
   margin: 10px;
-  background-color: lightcoral;
+  background-color: rgb(255, 170, 0);
   padding: 15px;
   border-radius: 5%;
   border: none;
-  box-shadow: 1px 2px 3px black;
+  box-shadow: 1px 1px 2px rgba(14, 14, 14, 0.5);
+}
+.btn_clear {
+  justify-content: end;
 }
 
 .container button:hover {
@@ -29,7 +47,7 @@
   background-color: rgb(94, 175, 81);
   padding: 15px;
   border-radius: 5%;
-  box-shadow: 1px 2px 7px black;
+  box-shadow: 1px 1px 3px rgba(14, 14, 14, 0.7);
 }
 
 .inp{

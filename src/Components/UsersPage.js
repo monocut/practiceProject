@@ -6,8 +6,7 @@ import deleteButton from "../images/delete-icon.png";
 const UsersPage = ({ users, removeUserItem, setNewUserName }) => {
   const [inputValue, setInputValue] = useState("");
   const [editingUserId, setEditingUserId] = useState(null);
-
-  //
+  const [inputActive, setInputActive] = useState(false);
 
   function handleRemoveUserItem(userId) {
     removeUserItem(userId);
@@ -20,50 +19,77 @@ const UsersPage = ({ users, removeUserItem, setNewUserName }) => {
   function handleInputChange(e) {
     setInputValue(e.currentTarget.value);
   }
+  function onSubmit(e) {
+    e.preventDefault();
+  }
 
   function onButtonSave(id) {
-    setNewUserName(id);
-    console.log(inputValue);
+    setNewUserName(id, inputValue);
+  }
+
+  //размытие фона
+
+  const handleInputFocus = () => {
+    setInputActive(true);
+  };
+
+  const handleInputBlur = () => {
+    setInputActive(false);
+  };
+  const modalClasses = [style.modal];
+  if (inputActive) {
+    modalClasses.push(style["modal_blur"]);
   }
 
   return (
-    <div className={style.items}>
-      <ul>
-        {users.map((el) => (
-          <li key={el.id}>
-            {el.id === editingUserId ? (
-              <form>
-                <label>
-                  User:
-                  <input onChange={handleInputChange}></input>
-                </label>
-                <label>
-                  Id:
-                  <input value={el.id} onChange={handleInputChange}></input>
-                </label>
-                <button onClick={() => onButtonSave(el.id)}>Save</button>
-              </form>
-            ) : (
-              <div>
-                <span>User: {el.name} </span>
-                <span>Id: {el.id}</span>
-              </div>
-            )}
-            <div className={style.buttons}>
-              <button>
-                <img
-                  onClick={() => onButtonEdit(el.id)}
-                  src={editButton}
-                  alt="editBtn"
-                ></img>
-              </button>
-              <button onClick={() => handleRemoveUserItem(el.id)}>
-                <img src={deleteButton} alt="deleteBtn"></img>
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
+    <div className={style.container}>
+      <div className={style.items}>
+        <div className={modalClasses.join(" ")}>
+          <ul>
+            {users.map((el) => (
+              <li key={el.id}>
+                {el.id === editingUserId ? (
+                  <form onSubmit={onSubmit}>
+                    <label>
+                      User:{" "}
+                      <input
+                        onChange={handleInputChange}
+                        onFocus={handleInputFocus}
+                        onBlur={handleInputBlur}
+                        autoFocus={true}
+                      ></input>
+                    </label>{" "}
+                    <label>
+                      Id:
+                      <span>{el.id}</span>
+                    </label>
+                    <button onMouseDown={() => onButtonSave(el.id)}>
+                      Save
+                    </button>
+                  </form>
+                ) : (
+                  <div>
+                    <span>User: {el.name} </span>
+                    <span>Id: {el.id}</span>
+                  </div>
+                )}
+                <div className={style.buttons}>
+                  <button>
+                    <img
+                      onClick={() => onButtonEdit(el.id)}
+                      src={editButton}
+                      alt="editBtn"
+                    ></img>
+                  </button>
+                  <button onClick={() => handleRemoveUserItem(el.id)}>
+                    <img src={deleteButton} alt="deleteBtn"></img>
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

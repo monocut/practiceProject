@@ -1,9 +1,14 @@
 .container {
-  margin: auto;
+  margin: 0 auto;
   gap: 30px;
   margin-left: 15px ;
   font-size: 20px;
 }
+
+.content {
+  text-align: center;
+}
+
 .container input {
   width: 200px;
   margin: 10px;
@@ -23,7 +28,7 @@
   padding: 15px;
   border-radius: 5%;
   border: none;
-  box-shadow: 1px 2px 3px black;
+  box-shadow: 1px 1px 2px rgba(14, 14, 14, 0.5);
 }
 
 .container button:hover {
@@ -31,5 +36,5 @@
   background-color: rgb(94, 175, 81);
   padding: 15px;
   border-radius: 5%;
-  box-shadow: 1px 2px 7px black;
+  box-shadow: 1px 1px 3px rgba(14, 14, 14, 0.7);
 }

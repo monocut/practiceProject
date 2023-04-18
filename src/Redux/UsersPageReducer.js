@@ -10,9 +10,10 @@ const removeUserItemAction = (userId) => {
     userId: userId,
   };
 };
-const setNewUserNameAction = (newUserName) => {
+const setNewUserNameAction = (id, newUserName) => {
   return {
     type: SET_NEW_USER_NAME,
+    id: id,
     newUserName: newUserName,
   };
 };
@@ -26,8 +27,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     removeUserItem: (userId) => dispatch(removeUserItemAction(userId)),
-    setNewUserName: (newUserName) =>
-      dispatch(setNewUserNameAction(newUserName)),
+    setNewUserName: (id, newUserName) =>
+      dispatch(setNewUserNameAction(id, newUserName)),
   };
 };
 

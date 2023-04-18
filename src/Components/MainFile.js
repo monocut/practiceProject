@@ -26,15 +26,17 @@ const MainFile = ({ setUserData, user, clearUserData }) => {
 
   return (
     <div className={style.container}>
-      Введите ID Пользователя:
-      <input onChange={handleInputChange}></input>
-      <button onClick={onClickHandler}>Найти</button>
-      <button onClick={handleClearUser}>Очистить</button>
-      {user && (
-        <p>
-          Пользователь с ID: {user.id} Имя: {user.name}
-        </p>
-      )}
+      <div className={style.content}>
+        Введите ID Пользователя:
+        <input onChange={handleInputChange}></input>
+        <button onClick={onClickHandler}>Найти</button>
+        <button onClick={handleClearUser}>Очистить</button>
+        {user && (
+          <p>
+            Пользователь с ID: {user.id} Имя: {user.name}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

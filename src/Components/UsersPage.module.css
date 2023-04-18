@@ -1,36 +1,44 @@
-.items{ 
-  display: flex;
-  
+
+.container {
+  margin: 0 auto;
+  text-align: center;
 }
+
 .items ul li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 20px;
   letter-spacing: 1px;
   background-color: aliceblue;
-  padding: 5px;
+  padding: 10px;
   border-radius: 10px;
-  width: 450px;
+  width: 850px;
   list-style: none;
   margin-bottom: 10px;
   position: relative;
+  border: 2px solid black
+
 }
 .items input{
-  font-size: 18px;
+  font-size: 20px;
   border-top: none;
   border-left: none;
   border-right: none;
   width: 100px;
   background-color: aliceblue;
   color: lightcoral;
+  outline: none;
+  /* box-sizing: border-box; */
 }
 
 .items button {
   margin: 8px;
-  background-color: lightcoral;
+  background-color: rgb(255, 170, 0);
   padding: 2px;
   border-radius: 5%;
   border: none;
-  box-shadow: 1px 2px 3px black;
-
+  box-shadow: 1px 1px 2px rgba(14, 14, 14, 0.5);
 }
 
 .items button:hover {
@@ -38,14 +46,26 @@
   background-color: rgb(94, 175, 81);
   padding: 2px;
   border-radius: 5%;
-  box-shadow: 1px 2px 7px black;
+  box-shadow: 1px 1px 3px rgba(14, 14, 14, 0.7);
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* box-shadow: 1px 1px 5px rgba(14, 14, 14, .3); */
 }
 
-/* .buttons{
-    position: absolute;
-  right: 0;
-} */
-
+.modal_blur div{
+  filter: blur(2px);
+  /* opacity: 0.2; */
+}
+.modal_blur label {
+  transform: scale(1.1);
+  transition: 0.1s;
+  margin-left: 20px;
+  padding: 15px;
+}
 .buttons img {
   width: 20px;
   height: 20px;

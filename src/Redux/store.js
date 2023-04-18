@@ -65,11 +65,18 @@ export const userReducer = (state = initialState, action) => {
       };
     }
     case SET_NEW_USER_NAME: {
-      console.log(action.newUserName);
+      const newUsers = state.users.map((user) => {
+        if (user.id === action.id) {
+          return { ...user, name: action.newUserName };
+        }
+        return user;
+      });
       return {
         ...state,
+        users: newUsers,
       };
     }
+
     default: {
       return state;
     }
@@ -84,6 +91,30 @@ export const createSetUserDataAction = (user) => ({
 export const clearUserDataAction = () => ({
   type: CLEAR_USER_DATA,
 });
+
+const saveStateToLocalStorage = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("state", serializedState);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+const loadStateFromLocalStorage = () => {
+  try {
+    const serializedState = localStorage.getItem("state");
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (e) {
+    console.error(e);
+    return undefined;
+  }
+};
+
+const persistedState = loadStateFromLocalStorage();
 
 const mapStateToProps = (state) => {
   return {
@@ -104,10 +135,13 @@ export const MainFileContainer = connect(
   mapDispatchToProps
 )(MainFile);
 
-// const reducers = combineReducers({
-//   userReducer,
-//   SearchStoryReducer,
-// });
+const store = createStore(
+  userReducer,
+  persistedState
+  // applyMiddleware(localStorageMiddleWare)
+);
 
-const store = createStore(userReducer);
+store.subscribe(() => {
+  saveStateToLocalStorage(store.getState());
+});
 export default store;

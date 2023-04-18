@@ -56,21 +56,33 @@ const ShowSearchHistory = ({
 
   return (
     <div className={style.container}>
-      <button onClick={showByName}>по имени</button>
       Story of search:
-      {searchHistory && (
-        <ul>
-          {filteredSeachHistory.map((el) => (
-            <li key={el.date}>
-              ID: {el.id} Name: {el.name} Date: {el.date}
-              <button onClick={() => handleRemoveStoryItem(el.date)}>x</button>
-            </li>
-          ))}
-        </ul>
-      )}
-      <button onClick={handleClearStory}>Очистить</button>
+      <button onClick={handleClearStory} className={style.btn_clear}>
+        Очистить
+      </button>
+      <div className={style.ul_result}>
+        {" "}
+        {searchHistory && (
+          <ul>
+            {filteredSeachHistory.map((el) => (
+              <li key={el.date}>
+                <div>
+                  ID: {el.id} Name: {el.name} Date: {el.date}
+                </div>
+                <div>
+                  <button onClick={() => handleRemoveStoryItem(el.date)}>
+                    x
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       Поиск по имени:{" "}
       <input className={style.inp} onChange={handleSortInputValue}></input>
+      Сортировать:
+      <button onClick={showByName}>по имени</button>
     </div>
   );
 };
