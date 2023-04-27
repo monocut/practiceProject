@@ -7,18 +7,23 @@ const UsersPage = ({ users, removeUserItem, setNewUserName }) => {
   const [inputValue, setInputValue] = useState("");
   const [editingUserId, setEditingUserId] = useState(null);
   const [inputActive, setInputActive] = useState(false);
+  const [previousName, setPreviousName] = useState("");
+  // const [userName, setUserName] = useState("");
 
   function handleRemoveUserItem(userId) {
     removeUserItem(userId);
   }
 
-  function onButtonEdit(id) {
+  function onButtonEdit(id, name) {
     setEditingUserId(id);
+    setInputValue(name);
+    setPreviousName(name);
   }
 
   function handleInputChange(e) {
     setInputValue(e.currentTarget.value);
   }
+
   function onSubmit(e) {
     e.preventDefault();
   }
@@ -27,13 +32,22 @@ const UsersPage = ({ users, removeUserItem, setNewUserName }) => {
     setNewUserName(id, inputValue);
   }
 
+  function onButtonCancel(id) {
+    setNewUserName(id, previousName);
+  }
+
   //размытие фона
 
   const handleInputFocus = () => {
     setInputActive(true);
   };
 
+  const handleInputCancel = () => {
+    setInputActive(false);
+  };
+
   const handleInputBlur = () => {
+    setEditingUserId(null);
     setInputActive(false);
   };
   const modalClasses = [style.modal];
@@ -57,6 +71,7 @@ const UsersPage = ({ users, removeUserItem, setNewUserName }) => {
                         onFocus={handleInputFocus}
                         onBlur={handleInputBlur}
                         autoFocus={true}
+                        value={inputValue}
                       ></input>
                     </label>{" "}
                     <label>
@@ -65,6 +80,12 @@ const UsersPage = ({ users, removeUserItem, setNewUserName }) => {
                     </label>
                     <button onMouseDown={() => onButtonSave(el.id)}>
                       Save
+                    </button>
+                    <button
+                      onBlur={handleInputCancel}
+                      onMouseDown={() => onButtonCancel(el.id)}
+                    >
+                      Cancel
                     </button>
                   </form>
                 ) : (
@@ -76,7 +97,7 @@ const UsersPage = ({ users, removeUserItem, setNewUserName }) => {
                 <div className={style.buttons}>
                   <button>
                     <img
-                      onClick={() => onButtonEdit(el.id)}
+                      onClick={() => onButtonEdit(el.id, el.name)}
                       src={editButton}
                       alt="editBtn"
                     ></img>

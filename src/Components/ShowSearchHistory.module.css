@@ -26,8 +26,26 @@
   /* text-align: center; */
   justify-content: space-between;
   align-items: center;
-  border: 2px solid black ;
+  /* border: 2px solid black ; */
 }
+
+.container ul li:hover{
+  background-color: rgb(156, 181, 204);
+}
+.story {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* gap: 100px; */
+}
+
+.footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px;
+}
+
 
 
 .container button {
@@ -59,6 +77,6 @@
   border-right: none;
   font-size: 20px;
   outline: none;
-  border-color: darkcyan;
+  border-color: black;
   color: chocolate;
 }

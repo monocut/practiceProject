@@ -56,10 +56,13 @@ const ShowSearchHistory = ({
 
   return (
     <div className={style.container}>
-      Story of search:
-      <button onClick={handleClearStory} className={style.btn_clear}>
-        Очистить
-      </button>
+      <div className={style.story}>
+        {" "}
+        Story of search:
+        <button onClick={handleClearStory} className={style.btn_clear}>
+          Очистить
+        </button>
+      </div>
       <div className={style.ul_result}>
         {" "}
         {searchHistory && (
@@ -79,10 +82,12 @@ const ShowSearchHistory = ({
           </ul>
         )}
       </div>
-      Поиск по имени:{" "}
-      <input className={style.inp} onChange={handleSortInputValue}></input>
-      Сортировать:
-      <button onClick={showByName}>по имени</button>
+      <div className={style.footer}>
+        Поиск по имени:{" "}
+        <input className={style.inp} onChange={handleSortInputValue}></input>
+        Сортировать:
+        <button onClick={showByName}>по имени</button>
+      </div>
     </div>
   );
 };

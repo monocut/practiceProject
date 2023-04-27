@@ -14,7 +14,7 @@ function App() {
           <Header />
           <Routes>
             {" "}
-            <Route path="/home/" element={<MainFileContainer />} />
+            <Route path="/*" element={<MainFileContainer />} />
             <Route path="/users/" element={<UsersPageContainer />} />
             <Route path="/history/" element={<SearchStoryContainer />} />
           </Routes>
