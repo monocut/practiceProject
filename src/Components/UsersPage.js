@@ -2,16 +2,31 @@ import React, { useState } from "react";
 import style from "../Components/UsersPage.module.css";
 import editButton from "../images/edit-icon.png";
 import deleteButton from "../images/delete-icon.png";
+import ConfirmModal from "./ConfirmModal";
 
 const UsersPage = ({ users, removeUserItem, setNewUserName }) => {
   const [inputValue, setInputValue] = useState("");
   const [editingUserId, setEditingUserId] = useState(null);
   const [inputActive, setInputActive] = useState(false);
   const [previousName, setPreviousName] = useState("");
-  // const [userName, setUserName] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [idDeletedUser, setIdDeletedUser] = useState(null);
+
+  //modal
 
   function handleRemoveUserItem(userId) {
-    removeUserItem(userId);
+    setShowModal(true);
+    setIdDeletedUser(userId);
+  }
+
+  function handleConfirm() {
+    setShowModal(false);
+    if (idDeletedUser !== null) {
+      removeUserItem(idDeletedUser);
+    }
+  }
+  function handleCancel() {
+    setShowModal(false);
   }
 
   function onButtonEdit(id, name) {
@@ -109,6 +124,16 @@ const UsersPage = ({ users, removeUserItem, setNewUserName }) => {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div>
+          {showModal && (
+            <ConfirmModal
+              message={"Вы уверены что хотите удалить?"}
+              onConfirm={handleConfirm}
+              onCancel={handleCancel}
+            />
+          )}
         </div>
       </div>
     </div>
