@@ -8,6 +8,7 @@ const CLEAR_STORY_DATA = "CLEAR_STORY_DATA";
 const REMOVE_STORY_ITEM = "REMOVE_STORY_ITEM";
 const REMOVE_USER_ITEM = "REMOVE_USER_ITEM";
 const SET_NEW_USER_NAME = "SET_NEW_USER_NAME";
+const SET_LIKES = "SET_LIKES";
 
 export const initialState = {
   userData: null,
@@ -21,6 +22,7 @@ export const initialState = {
     { id: 6, name: "Artem" },
     { id: 7, name: "Dmytro" },
   ],
+  likes: 0,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -74,6 +76,18 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         users: newUsers,
+      };
+    }
+    case SET_LIKES: {
+      const likesCount = state.users.map((el) => {
+        if (el.id === action.id) {
+          return { ...el, likes: initialState.likes + action.likes };
+        }
+        return el;
+      });
+      return {
+        ...state.users,
+        users: likesCount,
       };
     }
 

@@ -83,4 +83,21 @@
 }
 
 
+.likeBtn {
+  width: 25px;
+  height: 25px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.likeBtn img{
+  width: 25px;
+  height: 25px;
+  padding-bottom: 3px;
+}
+
+.likesBtnContainer {
+  display: flex;
+}
+
 
