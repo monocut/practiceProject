@@ -6,14 +6,32 @@ import ConfirmModal from "./ConfirmModal";
 import likeButton from "../images/likeLogo.png";
 import dislikeButton from "../images/dislikeLogo.png";
 
-const UsersPage = ({ users, removeUserItem, setNewUserName, setLikes }) => {
+const UsersPage = ({
+  users,
+  removeUserItem,
+  setNewUserName,
+  setLikes,
+  setUnlikes,
+}) => {
   const [inputValue, setInputValue] = useState("");
   const [editingUserId, setEditingUserId] = useState(null);
   const [inputActive, setInputActive] = useState(false);
   const [previousName, setPreviousName] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [idDeletedUser, setIdDeletedUser] = useState(null);
-  const [count, setCount] = useState(0);
+  const [sortedUsers, setSortedUsers] = useState(users);
+
+  //sorting
+
+  const sortUsersByLikes = () => {
+    const sorted = [...users];
+    sorted.sort((a, b) => b.likes - a.likes);
+    setSortedUsers(sorted);
+  };
+
+  const handleLikesChange = () => {
+    sortUsersByLikes();
+  };
 
   //modal
 
@@ -35,13 +53,13 @@ const UsersPage = ({ users, removeUserItem, setNewUserName, setLikes }) => {
   //modal-end
 
   //likesCount
-  function increment(id) {
-    setCount(count + 1);
-    setLikes(count, id);
+  function incrementLikes(id) {
+    setLikes(id);
+    handleLikesChange();
   }
-  function decrement(id) {
-    setCount(count - 1);
-    setLikes(count, id);
+  function decrementLikes(id) {
+    setUnlikes(id);
+    handleLikesChange();
   }
 
   function onButtonEdit(id, name) {
@@ -76,8 +94,6 @@ const UsersPage = ({ users, removeUserItem, setNewUserName, setLikes }) => {
     setInputActive(false);
   };
 
-  console.log(users);
-
   const handleInputBlur = () => {
     setEditingUserId(null);
     setInputActive(false);
@@ -92,7 +108,7 @@ const UsersPage = ({ users, removeUserItem, setNewUserName, setLikes }) => {
       <div className={style.items}>
         <div className={modalClasses.join(" ")}>
           <ul>
-            {users.map((el) => (
+            {sortedUsers.map((el) => (
               <li key={el.id}>
                 {el.id === editingUserId ? (
                   <form onSubmit={onSubmit}>
@@ -126,18 +142,18 @@ const UsersPage = ({ users, removeUserItem, setNewUserName, setLikes }) => {
                     <span>Id: {el.id}</span>
                     <div className={style.likesBtnContainer}>
                       <button
-                        onClick={() => increment(el.id)}
+                        onClick={() => incrementLikes(el.id)}
                         className={style.likeBtn}
                       >
                         <img src={likeButton} alt="like"></img>
                       </button>
                       <button
-                        onClick={() => decrement(el.id)}
+                        onClick={() => decrementLikes(el.id)}
                         className={style.likeBtn}
                       >
                         <img src={dislikeButton} alt="dislike"></img>
                       </button>
-                      <span>likes: {el.likes}</span>
+                      <div className={style.likes}>likes: {el.likes}</div>
                     </div>
                   </div>
                 )}

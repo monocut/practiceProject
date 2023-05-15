@@ -9,20 +9,20 @@ const REMOVE_STORY_ITEM = "REMOVE_STORY_ITEM";
 const REMOVE_USER_ITEM = "REMOVE_USER_ITEM";
 const SET_NEW_USER_NAME = "SET_NEW_USER_NAME";
 const SET_LIKES = "SET_LIKES";
+const SET_UNLIKES = "SET_UNLIKES";
 
 export const initialState = {
   userData: null,
   searchHistory: [],
   users: [
-    { id: 1, name: "Vova" },
-    { id: 2, name: "Sasha" },
-    { id: 3, name: "Anastasia" },
-    { id: 4, name: "Daria" },
-    { id: 5, name: "Artur" },
-    { id: 6, name: "Artem" },
-    { id: 7, name: "Dmytro" },
+    { id: 1, name: "Vova", likes: 0 },
+    { id: 2, name: "Sasha", likes: 0 },
+    { id: 3, name: "Anastasia", likes: 0 },
+    { id: 4, name: "Daria", likes: 0 },
+    { id: 5, name: "Artur", likes: 0 },
+    { id: 6, name: "Artem", likes: 0 },
+    { id: 7, name: "Dmytro", likes: 0 },
   ],
-  likes: 0,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -81,12 +81,24 @@ export const userReducer = (state = initialState, action) => {
     case SET_LIKES: {
       const likesCount = state.users.map((el) => {
         if (el.id === action.id) {
-          return { ...el, likes: initialState.likes + action.likes };
+          return { ...el, likes: el.likes + 1 };
         }
         return el;
       });
       return {
-        ...state.users,
+        ...state,
+        users: likesCount,
+      };
+    }
+    case SET_UNLIKES: {
+      const likesCount = state.users.map((el) => {
+        if (el.id === action.id) {
+          return { ...el, likes: el.likes - 1 };
+        }
+        return el;
+      });
+      return {
+        ...state,
         users: likesCount,
       };
     }
